@@ -5,8 +5,6 @@ export const HeroesApp = () => {
   return (
     <>
       <Navbar></Navbar>
-      <h1>Main</h1>
-
       <HeroeList></HeroeList>
     </>
   );

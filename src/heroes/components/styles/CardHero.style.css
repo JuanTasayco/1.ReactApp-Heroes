@@ -1,0 +1,34 @@
+.card {
+  margin: auto;
+  width: 384px;
+  height: 304px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0px;
+  /*   background-color: rgb(31, 41, 55, 1); */
+
+  background-color: #ff3cac;
+  background-image: linear-gradient(
+    225deg,
+    #ff3cac 0%,
+    #784ba0 1%,
+    #2b86c5 100%
+  );
+
+  color: white;
+}
+
+.card__image {
+  max-width: 7rem;
+  max-height: 6rem;
+}
+
+.card-h2 {
+  font-size: 20px;
+}
+
+.card-h5 {
+  font-size: 14px;
+}

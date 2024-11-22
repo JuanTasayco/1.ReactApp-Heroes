@@ -1,14 +1,25 @@
+import { CardHero } from "../components/CardHero";
 import { useHero } from "../hooks/useHero";
 
 export const HeroeList = () => {
   const { respHeroe } = useHero();
-  console.log(respHeroe?.heroes);
-  if (respHeroe.heroes) {
-    console.log("existe");
+  const { heroes } = respHeroe;
+  if (heroes.length > 0) {
+    console.log(heroes);
   }
   return (
     <>
-      <h1>ListHeroes</h1>
+      <div className="container">
+        <div className="row gy-2">
+          {heroes.map((heroe, index) => {
+            return (
+              <div key={index} className="col-md-6">
+                <CardHero hero={heroe} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };
