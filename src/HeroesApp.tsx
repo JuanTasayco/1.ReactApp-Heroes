@@ -1,18 +1,13 @@
 import { Route, Routes } from "react-router";
-import Navbar from "./heroes/components/Navbar";
-import { HeroeList } from "./heroes/pages/HeroeList";
-import { HeroeCollage } from "./heroes/pages/HeroeCollage";
-import { SearchHeroe } from "./heroes/pages/SearchHeroe";
+import { AuthRoutes } from "./auth/routes/AuthRoutes";
+import { HeroesRoutes } from "./heroes/routes/HeroesRoutes";
 
 export const HeroesApp = () => {
   return (
     <>
-      <Navbar></Navbar>
-
       <Routes>
-        <Route path="collage" element={<HeroeList></HeroeList>}></Route>
-        <Route path="/" element={<HeroeCollage />}></Route>
-        <Route path="search" element={<SearchHeroe />}></Route>
+        <Route path="auth/*" element={<AuthRoutes></AuthRoutes>}></Route>
+        <Route path="/*" element={<HeroesRoutes></HeroesRoutes>}></Route>
       </Routes>
     </>
   );
