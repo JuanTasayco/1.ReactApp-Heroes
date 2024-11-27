@@ -1,6 +1,12 @@
 html,
 body {
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5) !important;
+  position: relative;
+  background: #0F172A;
   color: white !important;
+}
+
+#root {
+  height: 100%;
+  background: #0F172A;
 }
