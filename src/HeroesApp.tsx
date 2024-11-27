@@ -10,8 +10,8 @@ export const HeroesApp = () => {
       <Navbar></Navbar>
 
       <Routes>
-        <Route path="/" element={<HeroeList></HeroeList>}></Route>
-        <Route path="collage" element={<HeroeCollage />}></Route>
+        <Route path="collage" element={<HeroeList></HeroeList>}></Route>
+        <Route path="/" element={<HeroeCollage />}></Route>
         <Route path="search" element={<SearchHeroe />}></Route>
       </Routes>
     </>
