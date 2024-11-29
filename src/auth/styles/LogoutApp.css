@@ -1,0 +1,10 @@
+.login__container {
+  margin: auto;
+  width: min(90%, 444px);
+  padding: 2rem 2rem;
+}
+
+.login__label {
+  font-size: 15px;
+  font-weight: bolder;
+}

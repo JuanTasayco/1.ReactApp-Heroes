@@ -2,11 +2,12 @@ html,
 body {
   height: 100vh;
   position: relative;
-  background: #0F172A;
+  background: #0f172a;
   color: white !important;
+  font-family: "Inter", sans-serif;
 }
 
 #root {
   height: 100%;
-  background: #0F172A;
+  background: #0f172a;
 }
