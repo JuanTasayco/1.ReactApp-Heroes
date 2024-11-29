@@ -5,14 +5,16 @@ export const SearchHeroe = () => {
     textInput: "",
   };
 
-  const { handleInputChange, sendForm, textInput } = useForm(InitialState);
+  const { handleInputChange, respHero, sendForm, textInput } =
+    useForm(InitialState);
 
+  console.log(respHero);
   return (
     <>
       <div className="container">
         <h1 className="mb-4">Search Component React</h1>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-6 mb-3 mb-md-0">
             <form onSubmit={sendForm}>
               <input
                 placeholder="Search a Hero.."
@@ -27,6 +29,16 @@ export const SearchHeroe = () => {
                 Buscar Heroe
               </button>
             </form>
+          </div>
+
+          <div className="col-md-6">
+            {respHero.map((r: any, index: number) => {
+              return (
+                <div key={index} className="alert alert-light" role="alert">
+                  {r.superhero}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

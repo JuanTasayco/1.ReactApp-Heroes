@@ -8,6 +8,8 @@ export const useForm = (initialState: any) => {
     const { respHeroe } = useHero();
     const { heroes } = respHeroe;
 
+    const [respHero, setRespHero] = useState<any[]>([]);
+
 
     const handleInputChange = ({ target }: any) => {
         const { name, value } = target;
@@ -21,7 +23,8 @@ export const useForm = (initialState: any) => {
         eventForm.preventDefault();
         const value = form.textInput.trim().toLowerCase();
         const response = getHeroByName(value, heroes);
-        emitHeroesResponse(response);
+        console.log('buscando heroe')
+        setRespHero(response);
         clearForm();
     }
 
@@ -34,7 +37,7 @@ export const useForm = (initialState: any) => {
         handleInputChange,
         sendForm,
         clearForm,
-        heroSearchResponse,
         ...form,
+        respHero
     }
 }
