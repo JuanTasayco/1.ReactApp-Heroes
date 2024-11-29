@@ -5,10 +5,9 @@ export const SearchHeroe = () => {
     textInput: "",
   };
 
-  const { handleInputChange, respHero, sendForm, textInput } =
+  const { handleInputChange, respHero, sendForm, textInput, form, clearForm } =
     useForm(InitialState);
 
-  console.log(respHero);
   return (
     <>
       <div className="container">
@@ -32,13 +31,27 @@ export const SearchHeroe = () => {
           </div>
 
           <div className="col-md-6">
-            {respHero.map((r: any, index: number) => {
-              return (
-                <div key={index} className="alert alert-light" role="alert">
-                  {r.superhero}
-                </div>
-              );
-            })}
+            <div className="resp__heroes">
+              {respHero.heroes.map((r: any, index: number) => {
+                return (
+                  <div key={index} className="alert alert-light" role="alert">
+                    {r.superhero}
+                  </div>
+                );
+              })}
+            </div>
+
+            {respHero.status === "initial" && (
+              <div className="alert alert-primary" role="alert">
+                Buscar un Heroe
+              </div>
+            )}
+
+            {respHero.status === "error" && (
+              <div className="alert alert-danger" role="alert">
+                Heroe no encontrado
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -2,13 +2,21 @@ import { useState } from "react"
 import { useHero } from "./useHero";
 import { getHeroByName } from "../helpers/getHeroByName";
 
+export interface IResponsesHero {
+    status: 'initial' | 'success' | 'error';
+    heroes: any[];
+}
+
 export const useForm = (initialState: any) => {
 
     const [form, setForm] = useState(initialState);
     const { respHeroe } = useHero();
     const { heroes } = respHeroe;
 
-    const [respHero, setRespHero] = useState<any[]>([]);
+    const [respHero, setRespHero] = useState<IResponsesHero>({
+        status: 'initial',
+        heroes: []
+    });
 
 
     const handleInputChange = ({ target }: any) => {
@@ -23,9 +31,8 @@ export const useForm = (initialState: any) => {
         eventForm.preventDefault();
         const value = form.textInput.trim().toLowerCase();
         const response = getHeroByName(value, heroes);
-        console.log('buscando heroe')
-        setRespHero(response);
-        clearForm();
+        setRespHero(response.length > 0 ? { status: 'success', heroes: response } : { status: 'error', heroes: [] });
+
     }
 
     const clearForm = () => {
