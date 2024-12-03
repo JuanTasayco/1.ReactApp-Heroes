@@ -1,7 +1,30 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useFormAuth } from "../hooks/useFormAuth";
 import "../styles/LogoutApp.css";
 
 export const LogoutApp = () => {
-  const login = () => {};
+
+  const initialForm = {
+    username: "",
+    password: "",
+    date: new Date(),
+    role: "user"
+  }
+
+  const { logUser } = useContext(AuthContext);
+
+  const { authForm, setValueToForm } = useFormAuth(initialForm);
+  const { username, password } = authForm;
+
+  const login = (eventButton: any) => {
+    eventButton.preventDefault();
+    /* validaciones de formulario */
+    /* si el formulario es correcto lo mando al logUser */
+    logUser(authForm);
+  }
+
   return (
     <>
       <div className="login__container rounded shadow-lg mt-5">
@@ -22,6 +45,8 @@ export const LogoutApp = () => {
               placeholder="name@example.com"
               name="username"
               className="form-control"
+              onChange={setValueToForm}
+              value={username}
             />
           </div>
           <div className="mt-4">
@@ -32,7 +57,9 @@ export const LogoutApp = () => {
               type="password"
               placeholder="************"
               name="password"
+              onChange={setValueToForm}
               className="form-control"
+              value={password}
             />
           </div>
 

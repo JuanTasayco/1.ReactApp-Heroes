@@ -1,13 +1,42 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useReducer } from "react";
 import { AuthContext } from "./AuthContext";
 import { AuthReducer } from "./authReducer";
+import { useNavigate } from "react-router";
+import { typesReducerAuth, UserAuthLocalStorage } from "../types/types";
 
-const initialState = {
-  logged: false,
-};
 
 export const AuthProvider = ({ children }: { children: any }) => {
-  const [state, dispatch] = useReducer(AuthReducer, initialState);
+  const navigate = useNavigate();
 
-  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
+  const init = () => {
+    const userActive = localStorage.getItem('userActive');
+    const user: UserAuthLocalStorage = userActive ? JSON.parse(userActive) : null;
+    /* convierto a user en un booleano usando !! */
+    return {
+      logged: !!user,
+      ...user,
+    }
+  }
+  const [state, dispatch] = useReducer(AuthReducer, { logged: false }, init);
+
+  const logUser = (userData: any) => {
+    const action = {
+      type: typesReducerAuth.login,
+      payload: userData
+    }
+    localStorage.setItem('userActive', JSON.stringify(userData));
+    dispatch(action);
+    navigate("/")
+  }
+
+  const logOut = () => {
+    localStorage.removeItem('userActive');
+    const action = {
+      type: typesReducerAuth.logout
+    }
+    dispatch(action);
+  }
+  /* state entrega el usuario */
+  return <AuthContext.Provider value={{ logUser, logOut, state }}>{children}</AuthContext.Provider>;
 };

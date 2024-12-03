@@ -1,12 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, NavLink, useNavigate } from "react-router";
+import { IAuthContext, IUserAuth } from "../../auth/types/types";
+import { useContext } from "react";
+import { AuthContext } from "../../auth/context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const contextS: IAuthContext = useContext<any>(AuthContext);
+
+  const currentUser: IUserAuth = contextS.state;
 
   const onLogout = () => {
-    navigate("/auth/logout", {
-      replace: true,
-    });
+    console.log(contextS)
+    if (currentUser.logged) {
+      contextS.logOut();
+    } else {
+      navigate("/auth/logout", {
+        replace: true,
+      });
+    }
   };
 
   return (
@@ -41,18 +53,20 @@ const Navbar = () => {
             </ul>
             <div className="d-flex navbar-nav  mb-2 mb-lg-0" role="search">
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Juan
-                </a>
+                {currentUser.username && <a className="nav-link">
+                  {currentUser.username}
+                </a>}
+
               </li>
 
               <li className="nav-item">
                 <a
-                  className="nav-link "
+                  className="nav-link"
                   aria-disabled="true"
+                  style={{ cursor: "pointer" }}
                   onClick={onLogout}
                 >
-                  Logout
+                  {currentUser.logged ? 'Logout' : 'Login'}
                 </a>
               </li>
             </div>
