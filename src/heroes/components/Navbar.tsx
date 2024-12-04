@@ -41,7 +41,7 @@ const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <NavLink className="nav-link" to="/">
+              <NavLink className="nav-link" to="/sliders">
                 Sliders
               </NavLink>
               <NavLink className="nav-link" to="/collage">

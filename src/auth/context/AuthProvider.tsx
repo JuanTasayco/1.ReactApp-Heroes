@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: { children: any }) => {
     }
     localStorage.setItem('userActive', JSON.stringify(userData));
     dispatch(action);
-    navigate("/")
+    navigate("/sliders");
   }
 
   const logOut = () => {
@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }: { children: any }) => {
       type: typesReducerAuth.logout
     }
     dispatch(action);
+    navigate("auth/logout");
   }
   /* state entrega el usuario */
   return <AuthContext.Provider value={{ logUser, logOut, state }}>{children}</AuthContext.Provider>;

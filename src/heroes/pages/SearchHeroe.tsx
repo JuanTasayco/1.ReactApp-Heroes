@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "../hooks/useForm";
 
 export const SearchHeroe = () => {
@@ -5,7 +6,7 @@ export const SearchHeroe = () => {
     textInput: "",
   };
 
-  const { handleInputChange, respHero, sendForm, textInput, form, clearForm } =
+  const { handleInputChange, respHero, sendForm, textInput } =
     useForm(InitialState);
 
   return (

@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 
 export const CardDescription = React.memo(({ dataHeroe }: { dataHeroe: any }) => {
-    console.log(dataHeroe);
     return (
         <>
             {dataHeroe && <div className="card bg-dark w-100 h-100 rounded-md shadow-lg">
